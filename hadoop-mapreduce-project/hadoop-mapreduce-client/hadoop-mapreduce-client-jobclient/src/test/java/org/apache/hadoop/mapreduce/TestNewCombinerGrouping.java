@@ -19,6 +19,7 @@
 package org.apache.hadoop.mapreduce;
 
 import org.junit.Assert;
+import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.RawComparator;
@@ -105,7 +106,8 @@ public class TestNewCombinerGrouping {
 
   @Test
   public void testCombiner() throws Exception {
-    if (!new File(TEST_ROOT_DIR).mkdirs()) {
+    File setup = new File(TEST_ROOT_DIR);
+    if (!setup.mkdirs()) {
       throw new RuntimeException("Could not create test dir: " + TEST_ROOT_DIR);
     }
     File in = new File(TEST_ROOT_DIR, "input");
@@ -174,6 +176,7 @@ public class TestNewCombinerGrouping {
     } else {
       Assert.fail("Job failed");
     }
+    FileUtil.fullyDelete(setup);
   }
 
 }
