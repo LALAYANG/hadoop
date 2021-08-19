@@ -206,6 +206,7 @@ public abstract class NotificationTestCase extends HadoopTestCase {
     }
     assertEquals(6, NotificationServlet.counter);
     assertEquals(0, NotificationServlet.failureCounter);
+    NotificationServlet.counter = 0;
   }
 
   private String launchWordCount(JobConf conf,
