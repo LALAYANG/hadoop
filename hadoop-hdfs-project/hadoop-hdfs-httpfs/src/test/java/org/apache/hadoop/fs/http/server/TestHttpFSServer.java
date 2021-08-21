@@ -1362,6 +1362,9 @@ public class TestHttpFSServer extends HFSTestCase {
     result = getStatus("/tmp/tmp-snap-test/.snapshot",
         "LISTSTATUS");
     Assert.assertTrue(result.contains("snap-with-name"));
+    snapshotTestPreconditions("DELETE",
+        "DELETESNAPSHOT",
+        "snapshotname=snap-with-name").getResponseCode();
   }
 
   @Test
@@ -1411,6 +1414,9 @@ public class TestHttpFSServer extends HFSTestCase {
     Assert.assertTrue(result.contains("snap-renamed"));
     //There should be no snapshot named snap-to-rename now
     Assert.assertFalse(result.contains("snap-to-rename"));
+    snapshotTestPreconditions("DELETE",
+        "DELETESNAPSHOT",
+        "snapshotname=snap-renamed").getResponseCode();
   }
 
   @Test
