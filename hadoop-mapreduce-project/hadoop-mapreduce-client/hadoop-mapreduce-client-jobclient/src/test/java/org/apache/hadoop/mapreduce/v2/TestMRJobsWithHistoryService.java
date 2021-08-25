@@ -162,6 +162,7 @@ public class TestMRJobsWithHistoryService {
     gjReq.setJobId(jobId);
     JobReport jobReport = historyClient.getJobReport(gjReq).getJobReport();
     verifyJobReport(jobReport, jobId);
+    mrCluster = null;
   }
 
   private void verifyJobReport(JobReport jobReport, JobId jobId) {
